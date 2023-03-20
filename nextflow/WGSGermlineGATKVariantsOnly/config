@@ -1,0 +1,99 @@
+docker.enabled = true
+
+params {
+
+    // OUTPUT DIRECTORY
+    outdir  = './outputs'
+
+    // INPUTS
+    // IndexedBam
+    bam                       = [
+        // bam
+        // bai
+    ]
+
+    // FastaWithIndexes
+    reference                 = [
+        // fasta
+        // amb
+        // ann
+        // bwt
+        // dict
+        // fai
+        // pac
+        // sa
+    ]
+
+    // CompressedIndexedVCF
+    snps_dbsnp                = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    snps_1000gp               = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    known_indels              = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    mills_indels              = [
+        // vcf.gz
+        // tbi
+    ]
+
+    adapter_file              = null
+    contaminant_file          = null
+    gatk_intervals            = [
+        // list files here
+    ]
+    sample_name               = null
+    allele_freq_threshold     = 0.05
+    min_mapping_qual          = null
+    filter                    = null
+    vc_gatk_uncompress_force  = true
+
+    // PROCESSES
+    calculate_performancesummary_genomefile.code_file  = '/usr/local/dev/2023/janis/test-pipeline/WGSGermlineGATKVariantsOnly/templates/GenerateGenomeFileForBedtoolsCoverage.py'
+    generate_gatk_intervals.code_file                  = '/usr/local/dev/2023/janis/test-pipeline/WGSGermlineGATKVariantsOnly/templates/GenerateIntervalsByChromosome.py'
+    vc_gatk_sort_combined.cpus                         = 1
+    vc_gatk_sort_combined.memory                       = 8
+
+    // SUBWORKFLOW: BQSR
+    bqsr.base_recalibrator.cpus    = 1
+    bqsr.base_recalibrator.memory  = 16
+    bqsr.apply_bqsr.cpus           = 1
+    bqsr.apply_bqsr.memory         = 8
+
+    // SUBWORKFLOW: PERFORMANCE_SUMMARY
+    performance_summary.samtoolsview_do_not_output_alignments_with_bits_set  = '0x400'
+    performance_summary.performancesummary_genome                            = true
+    performance_summary.gatk4collectinsertsizemetrics.cpus                   = 1
+    performance_summary.gatk4collectinsertsizemetrics.memory                 = 8
+    performance_summary.bedtoolsgenomecoveragebed.memory                     = 8
+
+    // SUBWORKFLOW: VC_GATK
+    vc_gatk.split_bam_output_filename                 = 'out'
+    vc_gatk.haplotype_caller_pair_hmm_implementation  = 'LOGLESS_CACHING'
+    vc_gatk.uncompressvcf_force                       = true
+    vc_gatk.split_bam.memory                          = 4
+    vc_gatk.haplotype_caller.cpus                     = 1
+    vc_gatk.haplotype_caller.memory                   = 8
+    vc_gatk.splitnormalisevcf.cpus                    = 1
+    vc_gatk.splitnormalisevcf.memory                  = 8
+
+    // SUBWORKFLOW: VC_GATK_ADDBAMSTATS
+    vc_gatk_addbamstats.samtoolsmpileup_count_orphans  = true
+    vc_gatk_addbamstats.samtoolsmpileup_nobaq          = true
+    vc_gatk_addbamstats.samtoolsmpileup_minbq          = 0
+    vc_gatk_addbamstats.samtoolsmpileup_max_depth      = 10000
+    vc_gatk_addbamstats.addbamstats_type               = 'germline'
+
+
+}

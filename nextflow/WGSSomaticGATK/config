@@ -1,0 +1,222 @@
+docker.enabled = true
+
+params {
+
+    // OUTPUT DIRECTORY
+    outdir  = './outputs'
+
+    // INPUTS
+    normal_inputs                = [
+        [
+            // read 1
+            // read 2
+        ],
+    ]
+    tumor_inputs                 = [
+        [
+            // read 1
+            // read 2
+        ],
+    ]
+    normal_name                  = null
+    // FastaWithIndexes
+    reference                    = [
+        // fasta
+        // amb
+        // ann
+        // bwt
+        // dict
+        // fai
+        // pac
+        // sa
+    ]
+
+    // CompressedIndexedVCF
+    snps_dbsnp                   = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    snps_1000gp                  = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    known_indels                 = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    mills_indels                 = [
+        // vcf.gz
+        // tbi
+    ]
+
+    adapter_file                 = null
+    contaminant_file             = null
+    gatk_intervals               = [
+        // list files here
+    ]
+    min_mapping_qual             = null
+    filter                       = null
+    // CompressedIndexedVCF
+    gnomad                       = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    panel_of_normals             = [
+        // vcf.gz
+        // tbi
+    ]
+
+    tumor_name                   = null
+    allele_freq_threshold        = 0.05
+    vc_gatk_uncompressvcf_force  = true
+
+    // PROCESSES
+    calculate_performancesummary_genomefile.code_file  = '/usr/local/dev/2023/janis/test-pipeline/WGSSomaticGATK/templates/GenerateGenomeFileForBedtoolsCoverage.py'
+    generate_gatk_intervals.code_file                  = '/usr/local/dev/2023/janis/test-pipeline/WGSSomaticGATK/templates/GenerateIntervalsByChromosome.py'
+    vc_gatk_sort_combined.cpus                         = 1
+    vc_gatk_sort_combined.memory                       = 8
+
+    // SUBWORKFLOW: ADDBAMSTATS
+    addbamstats.addbamstats_type  = 'somatic'
+
+    // SUBWORKFLOW: ALIGNMENT_NORMAL
+    alignment_normal.allele_freq_threshold           = 0.05
+    alignment_normal.min_mapping_qual                = null
+    alignment_normal.filter                          = null
+    alignment_normal.align_and_sort_sortsam_tmp_dir  = './tmp'
+    alignment_normal.getfastqc_adapters.code_file    = '/usr/local/dev/2023/janis/test-pipeline/WGSSomaticGATK/templates/ParseFastqcAdapters.py'
+    alignment_normal.fastqc.cpus                     = 1
+    alignment_normal.fastqc.memory                   = 8
+
+    // SUBWORKFLOW: ALIGNMENT_TUMOR
+    alignment_tumor.allele_freq_threshold           = 0.05
+    alignment_tumor.min_mapping_qual                = null
+    alignment_tumor.filter                          = null
+    alignment_tumor.align_and_sort_sortsam_tmp_dir  = './tmp'
+    alignment_tumor.getfastqc_adapters.code_file    = '/usr/local/dev/2023/janis/test-pipeline/WGSSomaticGATK/templates/ParseFastqcAdapters.py'
+    alignment_tumor.fastqc.cpus                     = 1
+    alignment_tumor.fastqc.memory                   = 8
+
+    // SUBWORKFLOW: ALIGN_AND_SORT
+    alignment_normal.align_and_sort.five_prime_adapter_read1       = []  // list values here
+    alignment_normal.align_and_sort.five_prime_adapter_read2       = []  // list values here
+    alignment_normal.align_and_sort.cutadapt_quality_cutoff        = 15
+    alignment_normal.align_and_sort.cutadapt_minimum_length        = 50
+    alignment_normal.align_and_sort.bwamem_mark_shorter_splits     = true
+    alignment_normal.align_and_sort.sortsam_sort_order             = 'coordinate'
+    alignment_normal.align_and_sort.sortsam_create_index           = true
+    alignment_normal.align_and_sort.sortsam_validation_stringency  = 'SILENT'
+    alignment_normal.align_and_sort.sortsam_max_records_in_ram     = 5000000
+    alignment_tumor.align_and_sort.five_prime_adapter_read1        = []  // list values here
+    alignment_tumor.align_and_sort.five_prime_adapter_read2        = []  // list values here
+    alignment_tumor.align_and_sort.cutadapt_quality_cutoff         = 15
+    alignment_tumor.align_and_sort.cutadapt_minimum_length         = 50
+    alignment_tumor.align_and_sort.bwamem_mark_shorter_splits      = true
+    alignment_tumor.align_and_sort.sortsam_sort_order              = 'coordinate'
+    alignment_tumor.align_and_sort.sortsam_create_index            = true
+    alignment_tumor.align_and_sort.sortsam_validation_stringency   = 'SILENT'
+    alignment_tumor.align_and_sort.sortsam_max_records_in_ram      = 5000000
+    alignment_normal.align_and_sort.cutadapt.cpus                  = 5
+    alignment_normal.align_and_sort.cutadapt.memory                = 4
+    alignment_normal.align_and_sort.bwamem.cpus                    = 16
+    alignment_normal.align_and_sort.bwamem.memory                  = 16
+    alignment_normal.align_and_sort.sortsam.cpus                   = 1
+    alignment_normal.align_and_sort.sortsam.memory                 = 8
+    alignment_tumor.align_and_sort.cutadapt.cpus                   = 5
+    alignment_tumor.align_and_sort.cutadapt.memory                 = 4
+    alignment_tumor.align_and_sort.bwamem.cpus                     = 16
+    alignment_tumor.align_and_sort.bwamem.memory                   = 16
+    alignment_tumor.align_and_sort.sortsam.cpus                    = 1
+    alignment_tumor.align_and_sort.sortsam.memory                  = 8
+
+    // SUBWORKFLOW: BQSR_NORMAL
+    bqsr_normal.base_recalibrator.cpus    = 1
+    bqsr_normal.base_recalibrator.memory  = 16
+    bqsr_normal.apply_bqsr.cpus           = 1
+    bqsr_normal.apply_bqsr.memory         = 8
+
+    // SUBWORKFLOW: BQSR_TUMOR
+    bqsr_tumor.base_recalibrator.cpus    = 1
+    bqsr_tumor.base_recalibrator.memory  = 16
+    bqsr_tumor.apply_bqsr.cpus           = 1
+    bqsr_tumor.apply_bqsr.memory         = 8
+
+    // SUBWORKFLOW: MERGE_AND_MARKDUPS
+    alignment_normal.merge_and_markdups.create_index                           = true
+    alignment_normal.merge_and_markdups.max_records_in_ram                     = 5000000
+    alignment_normal.merge_and_markdups.merge_sam_files_use_threading          = true
+    alignment_normal.merge_and_markdups.merge_sam_files_validation_stringency  = 'SILENT'
+    alignment_tumor.merge_and_markdups.create_index                            = true
+    alignment_tumor.merge_and_markdups.max_records_in_ram                      = 5000000
+    alignment_tumor.merge_and_markdups.merge_sam_files_use_threading           = true
+    alignment_tumor.merge_and_markdups.merge_sam_files_validation_stringency   = 'SILENT'
+    alignment_normal.merge_and_markdups.merge_sam_files.cpus                   = 4
+    alignment_normal.merge_and_markdups.merge_sam_files.memory                 = 8
+    alignment_normal.merge_and_markdups.mark_duplicates.cpus                   = 4
+    alignment_normal.merge_and_markdups.mark_duplicates.memory                 = 8
+    alignment_tumor.merge_and_markdups.merge_sam_files.cpus                    = 4
+    alignment_tumor.merge_and_markdups.merge_sam_files.memory                  = 8
+    alignment_tumor.merge_and_markdups.mark_duplicates.cpus                    = 4
+    alignment_tumor.merge_and_markdups.mark_duplicates.memory                  = 8
+
+    // SUBWORKFLOW: NORMAL
+    addbamstats.normal.samtools_mpileup_count_orphans  = true
+    addbamstats.normal.samtools_mpileup_nobaq          = true
+    addbamstats.normal.samtools_mpileup_minbq          = 0
+    addbamstats.normal.samtools_mpileup_max_depth      = 10000
+
+    // SUBWORKFLOW: NORMAL_SPLIT_BAM
+    vc_gatk.normal_split_bam.split_bam.memory  = 4
+
+    // SUBWORKFLOW: PERFORMANCE_SUMMARY_NORMAL
+    performance_summary_normal.samtoolsview_do_not_output_alignments_with_bits_set  = '0x400'
+    performance_summary_normal.performancesummary_genome                            = true
+    performance_summary_normal.gatk4collectinsertsizemetrics.cpus                   = 1
+    performance_summary_normal.gatk4collectinsertsizemetrics.memory                 = 8
+    performance_summary_normal.bedtoolsgenomecoveragebed.memory                     = 8
+
+    // SUBWORKFLOW: PERFORMANCE_SUMMARY_TUMOR
+    performance_summary_tumor.samtoolsview_do_not_output_alignments_with_bits_set  = '0x400'
+    performance_summary_tumor.performancesummary_genome                            = true
+    performance_summary_tumor.gatk4collectinsertsizemetrics.cpus                   = 1
+    performance_summary_tumor.gatk4collectinsertsizemetrics.memory                 = 8
+    performance_summary_tumor.bedtoolsgenomecoveragebed.memory                     = 8
+
+    // SUBWORKFLOW: TUMOR
+    addbamstats.tumor.samtools_mpileup_count_orphans  = true
+    addbamstats.tumor.samtools_mpileup_nobaq          = true
+    addbamstats.tumor.samtools_mpileup_minbq          = 0
+    addbamstats.tumor.samtools_mpileup_max_depth      = 10000
+
+    // SUBWORKFLOW: TUMOR_SPLIT_BAM
+    vc_gatk.tumor_split_bam.split_bam.memory  = 4
+
+    // SUBWORKFLOW: VC_GATK
+    vc_gatk.output_bam_name                  = null
+    vc_gatk.uncompressvcf_force              = true
+    vc_gatk.filterpass_remove_filetered_all  = true
+    vc_gatk.filterpass_recode                = true
+    vc_gatk.filterpass_recode_infoall        = true
+    vc_gatk.mutect2.cpus                     = 4
+    vc_gatk.mutect2.memory                   = 16
+    vc_gatk.learnorientationmodel.cpus       = 1
+    vc_gatk.learnorientationmodel.memory     = 32
+    vc_gatk.getpileupsummaries.cpus          = 1
+    vc_gatk.getpileupsummaries.memory        = 64
+    vc_gatk.calculatecontamination.cpus      = 1
+    vc_gatk.calculatecontamination.memory    = 8
+    vc_gatk.filtermutect2calls.cpus          = 1
+    vc_gatk.filtermutect2calls.memory        = 16
+    vc_gatk.splitnormalisevcf.cpus           = 1
+    vc_gatk.splitnormalisevcf.memory         = 8
+
+
+}

@@ -1,0 +1,24 @@
+nextflow.enable.dsl=2
+
+process COMPRESSVCF {
+    debug true
+    container "biodckrdev/htslib@sha256:331b6646700cc4b12871395caa1ef89f137e1b77f7173e73581e7f8f7fafa636"
+    publishDir "${params.outdir}/vc_vardict/compressvcf"
+
+    input:
+    path file, stageAs: 'file'
+
+    output:
+    path "${file.name + ".gz"}", emit: out
+
+    script:
+    def stdout = params.vc_vardict.compressvcf_stdout == false ? "" : "--stdout"
+    """
+    bgzip \
+    ${stdout} \
+    ${file} \
+    > \
+    ${file.name}.gz \
+    """
+
+}

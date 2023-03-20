@@ -1,0 +1,92 @@
+docker.enabled = true
+
+params {
+
+    // OUTPUT DIRECTORY
+    outdir  = './outputs'
+
+    // INPUTS
+    fastqs                          = [
+        [
+            // read 1
+            // read 2
+        ],
+    ]
+    // FastaWithIndexes
+    reference                       = [
+        // fasta
+        // amb
+        // ann
+        // bwt
+        // dict
+        // fai
+        // pac
+        // sa
+    ]
+
+    // CompressedIndexedVCF
+    snps_dbsnp                      = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    snps_1000gp                     = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    known_indels                    = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    mills_indels                    = [
+        // vcf.gz
+        // tbi
+    ]
+
+    adapter_file                    = null
+    contaminant_file                = null
+    sample_name                     = null
+    allele_freq_threshold           = 0.05
+    min_mapping_qual                = null
+    filter                          = null
+    align_and_sort_sortsam_tmp_dir  = './tmp'
+
+    // PROCESSES
+    getfastqc_adapters.code_file  = '/usr/local/dev/2023/janis/test-pipeline/BwaAlignment/templates/ParseFastqcAdapters.py'
+    fastqc.cpus                   = 1
+    fastqc.memory                 = 8
+
+    // SUBWORKFLOW: ALIGN_AND_SORT
+    align_and_sort.five_prime_adapter_read1       = []  // list values here
+    align_and_sort.five_prime_adapter_read2       = []  // list values here
+    align_and_sort.cutadapt_quality_cutoff        = 15
+    align_and_sort.cutadapt_minimum_length        = 50
+    align_and_sort.bwamem_mark_shorter_splits     = true
+    align_and_sort.sortsam_sort_order             = 'coordinate'
+    align_and_sort.sortsam_create_index           = true
+    align_and_sort.sortsam_validation_stringency  = 'SILENT'
+    align_and_sort.sortsam_max_records_in_ram     = 5000000
+    align_and_sort.cutadapt.cpus                  = 5
+    align_and_sort.cutadapt.memory                = 4
+    align_and_sort.bwamem.cpus                    = 16
+    align_and_sort.bwamem.memory                  = 16
+    align_and_sort.sortsam.cpus                   = 1
+    align_and_sort.sortsam.memory                 = 8
+
+    // SUBWORKFLOW: MERGE_AND_MARKDUPS
+    merge_and_markdups.create_index                           = true
+    merge_and_markdups.max_records_in_ram                     = 5000000
+    merge_and_markdups.merge_sam_files_use_threading          = true
+    merge_and_markdups.merge_sam_files_validation_stringency  = 'SILENT'
+    merge_and_markdups.merge_sam_files.cpus                   = 4
+    merge_and_markdups.merge_sam_files.memory                 = 8
+    merge_and_markdups.mark_duplicates.cpus                   = 4
+    merge_and_markdups.mark_duplicates.memory                 = 8
+
+
+}
