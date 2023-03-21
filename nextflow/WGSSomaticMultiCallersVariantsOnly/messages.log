@@ -1,0 +1,102 @@
+WARNING	b4edf112-d067-4e4c-ba3e-7f45dfcd2190	The data source for this input is a stdout<File>, but the input is a VCF
+WARNING	99626eae-d815-408c-b172-253fce8e98ec	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	58d6b111-d2d5-4f1c-b084-f411becd41c0	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	4d5d123d-54a6-4b3a-8155-c28874965623	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	9d931d66-af8a-4c09-9f1d-9c4287c48d36	The data source for this input is a stdout<File>, but the input is a VCF
+WARNING	1c15151c-fba8-4d89-bf1b-c7c157f8b065	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	11356f38-cff4-49e1-8177-2fb5ced1855e	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	833023ba-5a25-4cf3-8d9d-455b713c235b	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	0be778fa-d26e-45db-b579-e53a77e98942	The data source for this input is a String, but the input is a Optional<bed>
+WARNING	c831e3bf-2646-4932-998e-68181e92c5bc	The data source for this input is a Array<Gzipped<VCF>>, but the input is a Array<Union<VCF, Gzipped<VCF>>>
+WARNING	ca791c29-8cad-4da9-991b-606437e6b3a7	The data source for this input is a Gzipped<VCF>, but the input is a Optional<bed>
+WARNING	58390847-b6f6-4841-9a65-3f9d0f4983f1	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	583868ef-aefe-4d61-9cba-3af0f0f9965a	The data source for this input is a Array<Gzipped<VCF>>, but the input is a Array<Union<VCF, Gzipped<VCF>>>
+WARNING	50f0f3a0-d179-471b-bdaa-b872f49484ca	The data source for this input is a Gzipped<VCF>, but the input is a Optional<bed>
+WARNING	f0ac9175-30a6-48e6-894a-47b0d6167c6b	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	abe1d379-15c8-485d-8863-c449b9a766e8	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	b7c220ca-768a-4dce-9563-ee21e560321d	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	4868e33d-2757-4571-9aa1-91ea9b384529	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	c7adfa4d-02fe-4f65-925a-f5014082622d	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	df4cbfb8-2dbf-446e-a4ea-8feeb95cba5c	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	71af2a2e-3565-46f5-9e38-f86b5cb52f22	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	60d121e5-25e2-4bc9-bc27-d3ff200c9e21	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	d2f63cb7-0fcf-461c-80ed-085a5965162e	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	10b8f99c-a2bb-4620-82f0-f86436002070	The data source for this input is a stdout<File>, but the input is a VCF
+WARNING	daf00242-dc4a-4631-a034-817b2454291a	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	07a7fe3f-2640-4124-9bc9-2a2f56b55517	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	b23e809c-b785-47d2-b7e1-17a5dce4c5b6	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	b3672aaa-214c-4876-9f97-2859fdd3acb4	The data source for this input is a stdout<File>, but the input is a VCF
+WARNING	62aa354b-b9f5-465c-b6f7-129b11416b32	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	ce0a412f-dd19-4449-a9a6-33be433f7110	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	54a47f13-51f1-4c1c-883d-f532c18d5a6f	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	d0ea4847-a9a4-4aa4-8199-2930df8be948	The data source for this input is a String, but the input is a Optional<bed>
+WARNING	9d96822b-a447-48c3-9063-b2813afe1fd0	The data source for this input is a Array<Gzipped<VCF>>, but the input is a Array<Union<VCF, Gzipped<VCF>>>
+WARNING	4ce887bf-4c92-4db1-b03b-29a850fe0144	The data source for this input is a Gzipped<VCF>, but the input is a Optional<bed>
+WARNING	bb9ad7ca-1949-4b72-ba18-e03b63022cb0	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	6d869f29-ab7e-42e5-9a9b-07515b3d4778	The data source for this input is a Array<Gzipped<VCF>>, but the input is a Array<Union<VCF, Gzipped<VCF>>>
+WARNING	2aaa71b3-e06a-4ec2-bd11-63533c1b92ed	The data source for this input is a Gzipped<VCF>, but the input is a Optional<bed>
+WARNING	771ffc4e-bd38-4d9a-a408-b0f5bbba583c	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	9a182019-9cc1-45ac-bc23-96927e5a287d	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	0b72e074-6634-44c6-88ed-74e4c14288a3	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	803ed339-9640-4eac-9027-51d98ded5cd2	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	9c649f23-71e6-4f18-b3af-a1109af64651	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	202aa4e2-bae3-4fa4-bdc8-41c6e0965196	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	1e9b44fc-a833-4179-9176-b994839d441b	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	36239e03-0d06-4a4f-a4fb-c1a7dd7ec95c	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	eb127c5b-b4b9-4003-9715-15f91abe1873	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	c4d9f93c-0d6b-4046-bc6f-1f4b6fd1bb9f	The data source for this input is a stdout<File>, but the input is a VCF
+WARNING	d2aa29e0-f186-4ff4-95bc-807b193f2e89	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	60d288a9-25c5-42b6-8af3-53c44c2dbf66	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	6f6cf5c7-e12f-4c39-bd59-ff63b6c55531	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	45e17fbe-55e7-4302-84ac-6227df20a060	The data source for this input is a stdout<File>, but the input is a VCF
+WARNING	379176df-e2b0-4f23-a1a8-a597d98a1b4b	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	69164205-3fa1-42f3-8835-9c2cb3ccbb7b	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	078bb06d-8999-4694-b6c9-5ac09467bff0	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	6441ff0b-c9ff-40eb-a27f-85b4942d41c7	The data source for this input is a String, but the input is a Optional<bed>
+WARNING	adfce8d2-205d-411a-89a7-096462f824c3	The data source for this input is a Array<Gzipped<VCF>>, but the input is a Array<Union<VCF, Gzipped<VCF>>>
+WARNING	37e149f0-7007-42ea-9856-c18d2701ced1	The data source for this input is a Gzipped<VCF>, but the input is a Optional<bed>
+WARNING	ee6b9158-3f45-4972-8731-4ea8d239f64e	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	1a795e0e-a2be-4f3a-9422-ab8c039b1336	The data source for this input is a Array<Gzipped<VCF>>, but the input is a Array<Union<VCF, Gzipped<VCF>>>
+WARNING	9b771d66-f3fc-4938-b7ba-c314c86a0f1f	The data source for this input is a Gzipped<VCF>, but the input is a Optional<bed>
+WARNING	42ade2a1-6230-4aa7-be0e-0e4e2a1d067b	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	65802a12-956e-48ba-bab9-fffdbe63940f	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	2335ac1d-21ac-4590-9ea1-acc1dde416a0	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	d12a3cd0-8fff-4314-b677-53d5ab3c21dc	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	ee95698d-38bf-424f-b892-7781ab16275d	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	3454f26a-3c77-428e-92af-ae53f8142be9	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	e287f55a-5a57-4176-963e-2d09f4431e3d	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	af01dee3-76b1-4233-8f28-e45ada96ef13	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	8b91f155-036f-4aaa-8318-220dddfa9f4a	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	ab521849-fa64-47be-92f5-f9a2cafc42e6	The data source for this input is a stdout<File>, but the input is a VCF
+WARNING	3002b491-438c-4044-b2a9-79a2f9960c8b	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	bcc4a5d2-3da1-4e3d-ae60-5a7a525e215d	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	816c393c-363f-48f3-b78f-2b88952e9832	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	e6615576-df7b-4cc1-bb63-d2358a257385	The data source for this input is a stdout<File>, but the input is a VCF
+WARNING	70b01a48-b28b-4e14-9072-938df3a228e1	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	18308edd-1134-4ff1-a3a5-f4ceff9e726f	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	067049c9-8800-4aa8-9691-8b34ac6ae19c	The data source for this input is a stdout<VCF>, but the input is a Gzipped<VCF>
+WARNING	46d56994-688e-47ca-a616-fc968a823f5a	The data source for this input is a String, but the input is a Optional<bed>
+WARNING	e0764baa-1d1a-41e8-9513-5c5d4f751ddb	The data source for this input is a Array<Gzipped<VCF>>, but the input is a Array<Union<VCF, Gzipped<VCF>>>
+WARNING	157cab1c-2702-4b4b-9812-fd92fe765986	The data source for this input is a Gzipped<VCF>, but the input is a Optional<bed>
+WARNING	5d885c10-8789-4dac-a149-09f51cf93c6f	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	1c33d8ea-0d8b-42da-a9be-9e92465b472f	The data source for this input is a Array<Gzipped<VCF>>, but the input is a Array<Union<VCF, Gzipped<VCF>>>
+WARNING	58880b70-3069-4145-93df-03937307c03a	The data source for this input is a Gzipped<VCF>, but the input is a Optional<bed>
+WARNING	f7ee59fd-77d5-42c1-b8d5-186deb9a66d3	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	d8fbddf9-353e-431b-b64a-6974ad3e4776	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	7c82df14-08f9-494f-be0b-55d726b6c573	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	f2c69b6f-a5b5-493a-a2a6-ff0ae4ecb68e	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	8b5fa916-308a-4d18-887d-5f9da61996a6	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	1ec9695e-c969-4cd9-897b-c26d7ebaf1f3	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	6f2c9e71-7c56-4a4e-bc18-85a910fdd2ab	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	6dcfe2f4-e5ce-4e54-af09-3a2c53b120da	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	7d731a32-238f-4582-8b39-9bf07d1d0d4d	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	d31d6314-acd1-4eb0-8b60-0ba19b21f7f7	The data source for this input is a BAM, but the input is a Array<IndexedBam>
+WARNING	a3fdfedc-8562-4c3e-96ad-4338f6b50d4b	The data source for this input is a BAM, but the input is a Array<IndexedBam>
+WARNING	f7f30728-c7b7-424d-a8dc-c58d63a65b5a	The data source for this input is a Gzipped<VCF>, but the input is a Optional<Gzipped<VCF>>
+WARNING	d92ec303-d38a-4771-8643-9dc182f44ea3	The data source for this input is a Gzipped<VCF>, but the input is a Optional<Gzipped<VCF>>
+WARNING	537cbc0c-2d3d-44cf-a01a-ab185b56e14c	The data source for this input is a Gzipped<VCF>, but the input is a Union<VCF, Gzipped<VCF>>
+WARNING	a3c01922-c613-45c8-91a6-396cf40a405d	The data source for this input is a Gzipped<VCF>, but the input is a Union<VCF, Gzipped<VCF>>
+WARNING	1324091c-a347-47f0-bc17-5119f88ac738	The data source for this input is a Gzipped<VCF>, but the input is a Optional<Gzipped<VCF>>
+WARNING	d7778a25-c662-4d2c-9038-70ea4ead1f51	The data source for this input is a Gzipped<VCF>, but the input is a Union<VCF, Gzipped<VCF>>
+WARNING	d9735c56-bf2e-45be-92b8-f53443403d1e	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>
+WARNING	d6681a28-f94b-4617-a860-c82f3ab7408c	The data source for this input is a Gzipped<VCF>, but the input is a Gzipped<VCF>

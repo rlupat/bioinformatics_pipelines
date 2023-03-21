@@ -1,0 +1,32 @@
+nextflow.enable.dsl=2
+
+process GENERATE_MANTA_CONFIG {
+    debug true
+    container "python@sha256:1d24b4656d4df536d8fa690be572774aa84b56c0418266b73886dc8138f047e6"
+    publishDir "${params.outdir}/generate_manta_config"
+
+    input:
+    path code_file
+
+    output:
+    val "${file("${task.workDir}/" + file("${task.workDir}/out_out").text.replace('"', ''))}", emit: out
+
+    exec:
+
+    script:
+    """
+    #!/usr/bin/env python
+
+    from ${code_file.simpleName} import code_block
+    import os
+    import json
+
+    result = code_block(output_filename="output.txt")
+
+    work_dir = os.getcwd()
+    for key in result:
+        with open(os.path.join(work_dir, f"out_{key}"), "w") as fp:
+            fp.write(json.dumps(result[key]))
+    """
+
+}

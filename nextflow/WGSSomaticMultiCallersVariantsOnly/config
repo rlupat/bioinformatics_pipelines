@@ -1,0 +1,222 @@
+docker.enabled = true
+
+params {
+
+    // OUTPUT DIRECTORY
+    outdir  = './outputs'
+
+    // INPUTS
+    // IndexedBam
+    normal_bam                               = [
+        // bam
+        // bai
+    ]
+
+    // IndexedBam
+    tumor_bam                                = [
+        // bam
+        // bai
+    ]
+
+    normal_name                              = null
+    // FastaWithIndexes
+    reference                                = [
+        // fasta
+        // amb
+        // ann
+        // bwt
+        // dict
+        // fai
+        // pac
+        // sa
+    ]
+
+    // CompressedIndexedVCF
+    snps_dbsnp                               = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    snps_1000gp                              = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    known_indels                             = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    mills_indels                             = [
+        // vcf.gz
+        // tbi
+    ]
+
+    adapter_file                             = null
+    contaminant_file                         = null
+    gatk_intervals                           = [
+        // list files here
+    ]
+    vardict_intervals                        = [
+        // list files here
+    ]
+    // BedTABIX
+    strelka_intervals                        = [
+        // bed.gz
+        // tbi
+    ]
+
+    gridss_blacklist                         = null
+    min_mapping_qual                         = null
+    filter                                   = null
+    // CompressedIndexedVCF
+    gnomad                                   = [
+        // vcf.gz
+        // tbi
+    ]
+
+    // CompressedIndexedVCF
+    panel_of_normals                         = [
+        // vcf.gz
+        // tbi
+    ]
+
+    pseudo_snps                              = null
+    max_depth                                = null
+    everything                               = null
+    genome                                   = null
+    cval                                     = null
+    purity_cval                              = null
+    normal_depth                             = null
+    tumor_name                               = null
+    allele_freq_threshold                    = 0.05
+    vc_gatk_uncompressvcf_force              = true
+    vc_vardict_uncompress_for_combine_force  = true
+    combine_variants_type                    = 'somatic'
+    combine_variants_columns                 = ['AD', 'DP', 'GT']
+    combined_uncompress_force                = true
+
+    // PROCESSES
+    calculate_performancesummary_genomefile.code_file  = 'templates/GenerateGenomeFileForBedtoolsCoverage.py'
+    generate_gatk_intervals.code_file                  = 'templates/GenerateIntervalsByChromosome.py'
+    generate_vardict_headerlines.code_file             = 'templates/GenerateVardictHeaderLines.py'
+    generate_manta_config.code_file                    = 'templates/GenerateMantaConfig.py'
+    vc_gridss.cpus                                     = 8
+    vc_gridss.memory                                   = 31
+    vc_gatk_sort_combined.cpus                         = 1
+    vc_gatk_sort_combined.memory                       = 8
+    vc_vardict_sort_combined.cpus                      = 1
+    vc_vardict_sort_combined.memory                    = 8
+    circos_plot.cpus                                   = 1
+    circos_plot.memory                                 = 16
+    combine_variants.memory                            = 8
+    combined_sort.cpus                                 = 1
+    combined_sort.memory                               = 8
+
+    // SUBWORKFLOW: BQSR_NORMAL
+    bqsr_normal.base_recalibrator.cpus    = 1
+    bqsr_normal.base_recalibrator.memory  = 16
+    bqsr_normal.apply_bqsr.cpus           = 1
+    bqsr_normal.apply_bqsr.memory         = 8
+
+    // SUBWORKFLOW: BQSR_TUMOR
+    bqsr_tumor.base_recalibrator.cpus    = 1
+    bqsr_tumor.base_recalibrator.memory  = 16
+    bqsr_tumor.apply_bqsr.cpus           = 1
+    bqsr_tumor.apply_bqsr.memory         = 8
+
+    // SUBWORKFLOW: COMBINED_ADDBAMSTATS
+    combined_addbamstats.addbamstats_type  = 'somatic'
+
+    // SUBWORKFLOW: NORMAL
+    combined_addbamstats.normal.samtools_mpileup_count_orphans  = true
+    combined_addbamstats.normal.samtools_mpileup_nobaq          = true
+    combined_addbamstats.normal.samtools_mpileup_minbq          = 0
+    combined_addbamstats.normal.samtools_mpileup_max_depth      = 10000
+
+    // SUBWORKFLOW: NORMAL_SPLIT_BAM
+    vc_gatk.normal_split_bam.split_bam.memory  = 4
+
+    // SUBWORKFLOW: PERFORMANCE_SUMMARY_NORMAL
+    performance_summary_normal.samtoolsview_do_not_output_alignments_with_bits_set  = '0x400'
+    performance_summary_normal.performancesummary_genome                            = true
+    performance_summary_normal.gatk4collectinsertsizemetrics.cpus                   = 1
+    performance_summary_normal.gatk4collectinsertsizemetrics.memory                 = 8
+    performance_summary_normal.bedtoolsgenomecoveragebed.memory                     = 8
+
+    // SUBWORKFLOW: PERFORMANCE_SUMMARY_TUMOR
+    performance_summary_tumor.samtoolsview_do_not_output_alignments_with_bits_set  = '0x400'
+    performance_summary_tumor.performancesummary_genome                            = true
+    performance_summary_tumor.gatk4collectinsertsizemetrics.cpus                   = 1
+    performance_summary_tumor.gatk4collectinsertsizemetrics.memory                 = 8
+    performance_summary_tumor.bedtoolsgenomecoveragebed.memory                     = 8
+
+    // SUBWORKFLOW: TUMOR
+    combined_addbamstats.tumor.samtools_mpileup_count_orphans  = true
+    combined_addbamstats.tumor.samtools_mpileup_nobaq          = true
+    combined_addbamstats.tumor.samtools_mpileup_minbq          = 0
+    combined_addbamstats.tumor.samtools_mpileup_max_depth      = 10000
+
+    // SUBWORKFLOW: TUMOR_SPLIT_BAM
+    vc_gatk.tumor_split_bam.split_bam.memory  = 4
+
+    // SUBWORKFLOW: VC_FACETS
+    vc_facets.run_facets_directory  = '.'
+    vc_facets.run_facets.memory     = 64
+
+    // SUBWORKFLOW: VC_GATK
+    vc_gatk.output_bam_name                  = null
+    vc_gatk.uncompressvcf_force              = true
+    vc_gatk.filterpass_remove_filetered_all  = true
+    vc_gatk.filterpass_recode                = true
+    vc_gatk.filterpass_recode_infoall        = true
+    vc_gatk.mutect2.cpus                     = 4
+    vc_gatk.mutect2.memory                   = 16
+    vc_gatk.learnorientationmodel.cpus       = 1
+    vc_gatk.learnorientationmodel.memory     = 32
+    vc_gatk.getpileupsummaries.cpus          = 1
+    vc_gatk.getpileupsummaries.memory        = 64
+    vc_gatk.calculatecontamination.cpus      = 1
+    vc_gatk.calculatecontamination.memory    = 8
+    vc_gatk.filtermutect2calls.cpus          = 1
+    vc_gatk.filtermutect2calls.memory        = 16
+    vc_gatk.splitnormalisevcf.cpus           = 1
+    vc_gatk.splitnormalisevcf.memory         = 8
+
+    // SUBWORKFLOW: VC_STRELKA
+    vc_strelka.is_exome                         = null
+    vc_strelka.strelka_config                   = null
+    vc_strelka.filterpass_remove_filetered_all  = true
+    vc_strelka.filterpass_recode                = true
+    vc_strelka.filterpass_recode_infoall        = true
+    vc_strelka.manta.cpus                       = 4
+    vc_strelka.manta.memory                     = 4
+    vc_strelka.strelka.cpus                     = 4
+    vc_strelka.strelka.memory                   = 4
+    vc_strelka.sortvcf.cpus                     = 1
+    vc_strelka.sortvcf.memory                   = 8
+    vc_strelka.splitnormalisevcf.cpus           = 1
+    vc_strelka.splitnormalisevcf.memory         = 8
+    vc_strelka.extractaddp.memory               = 8
+
+    // SUBWORKFLOW: VC_VARDICT
+    vc_vardict.vardict_vcf_format        = true
+    vc_vardict.vardict_chrom_column      = 1
+    vc_vardict.vardict_reg_start_col     = 2
+    vc_vardict.vardict_gene_end_col      = 3
+    vc_vardict.vardict_threads           = 4
+    vc_vardict.compressvcf_stdout        = true
+    vc_vardict.vardict.cpus              = 4
+    vc_vardict.vardict.memory            = 8
+    vc_vardict.annotate.cpus             = 1
+    vc_vardict.annotate.memory           = 8
+    vc_vardict.splitnormalisevcf.cpus    = 1
+    vc_vardict.splitnormalisevcf.memory  = 8
+    vc_vardict.trim.cpus                 = 1
+    vc_vardict.trim.memory               = 1
+
+
+}
