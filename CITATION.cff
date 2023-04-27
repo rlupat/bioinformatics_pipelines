@@ -1,0 +1,13 @@
+cff-version: 0.0.1
+message: "If you use these workflows, please cite as below."
+authors:
+  - family-names: Lupat
+    given-names: Richard
+    orcid:  https://orcid.org/0000-0002-6435-7100
+  - family-names: Hall
+    given-names: Grace
+    orcid:
+title: "Janis Translated Nextflow Pipelines"
+version: 0.16.0
+doi:
+date-released: 2023-03-24
