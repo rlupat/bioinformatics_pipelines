@@ -18,9 +18,9 @@ process STRELKA {
     memory "${params.vc_strelka.strelka.memory}"
 
     input:
-    tuple path(bam), path(bai)
+    tuple path(normal_bam), path(normal_bai)
     tuple path(fasta), path(fai)
-    tuple path(bam), path(bai)
+    tuple path(tumour_bam), path(tumour_bai)
     tuple path(bed_gz), path(tbi)
     path compressed_indexed_vcf_array_flat
 
@@ -42,9 +42,9 @@ process STRELKA {
     ${call_regions} \
     ${config} \
     ${indel_candidates} \
-    --normalBam=${bam} \
+    --normalBam=${normal_bam} \
     --referenceFasta=${fasta} \
-    --tumourBam=${bam} \
+    --tumourBam=${tumour_bam} \
     ${exome} \
     --runDir=generated \
     ;${"generated"}/runWorkflow.py \

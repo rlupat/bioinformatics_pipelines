@@ -12,10 +12,10 @@ include { VC_GATK } from './subworkflows/vc_gatk'
 include { VC_GATK_MERGE } from './modules/vc_gatk_merge'
 include { VC_GATK_SORT_COMBINED } from './modules/vc_gatk_sort_combined'
 include { VC_GATK_UNCOMPRESSVCF } from './modules/vc_gatk_uncompressvcf'
-include { ADDBAMSTATS } from './subworkflows/addbamstats'
+include { SUBWF_ADDBAMSTATS } from './subworkflows/addbamstats'
 
 ch_gatk_intervals   = Channel.fromPath( params.gatk_intervals ).toList().ifEmpty( null )
-ch_panel_of_normals = Channel.fromPath( params.panel_of_normals ).toList().ifEmpty( null )
+ch_panel_of_normals = Channel.of( params.panel_of_normals ).toList().ifEmpty( null )
 ch_filter           = Channel.of( params.filter ).ifEmpty( null )
 ch_min_mapping_qual = Channel.of( params.min_mapping_qual ).ifEmpty( null )
 ch_adapter_file     = Channel.fromPath( params.adapter_file )
@@ -121,7 +121,7 @@ workflow  {
         VC_GATK_SORT_COMBINED.out.out
     )
 
-    ADDBAMSTATS(
+    SUBWF_ADDBAMSTATS(
         ALIGNMENT_NORMAL.out.out_bam,
         ch_normal_name,
         ch_reference,

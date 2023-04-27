@@ -38,7 +38,6 @@ workflow VC_GATK {
         TUMOR_SPLIT_BAM.out.out.flatten().toList(),
         ch_gnomad,
         NORMAL_SPLIT_BAM.out.out.flatten().toList(),
-        ch_panel_of_normals,
         ch_intervals,
         ch_normal_name,
         ch_normal_name

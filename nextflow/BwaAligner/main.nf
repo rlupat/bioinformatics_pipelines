@@ -5,7 +5,7 @@ include { BWAMEM } from './modules/bwamem'
 include { SORTSAM } from './modules/sortsam'
 
 ch_reference = Channel.fromPath( params.reference ).toList()
-ch_fastq     = Channel.of( params.fastq ).toList()
+ch_fastq     = Channel.fromPath( params.fastq ).toList()
 
 
 workflow  {

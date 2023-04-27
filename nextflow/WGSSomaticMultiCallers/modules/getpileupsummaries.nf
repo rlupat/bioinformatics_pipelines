@@ -23,7 +23,7 @@ process GETPILEUPSUMMARIES {
     path intervals, stageAs: 'intervals.bed'
 
     output:
-    path "${[[sample_name, "generated"].find{ it != null }].filter{item -> item != null}.join(".") + ".txt"}", emit: out
+    path "generated.txt", emit: out
 
     script:
     def compression_level = null
@@ -38,7 +38,7 @@ process GETPILEUPSUMMARIES {
     ${intervals} \
     ${bam} \
     -V ${vcf_gz} \
-    -O ${[[sample_name, "generated"].find{ it != null }].filter{item -> item != null}.join(".")}.txt \
+    -O generated.txt \
     """
 
 }

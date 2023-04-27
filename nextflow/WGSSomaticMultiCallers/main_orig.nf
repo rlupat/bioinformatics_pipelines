@@ -6,7 +6,7 @@ include { CALCULATE_PERFORMANCESUMMARY_GENOMEFILE } from './modules/calculate_pe
 include { PERFORMANCE_SUMMARY_NORMAL } from './subworkflows/performance_summary_normal'
 include { PERFORMANCE_SUMMARY_TUMOR } from './subworkflows/performance_summary_tumor'
 include { VC_GRIDSS } from './modules/vc_gridss'
-//include { VC_FACETS } from './subworkflows/vc_facets'
+include { VC_FACETS } from './subworkflows/vc_facets'
 include { GENERATE_GATK_INTERVALS } from './modules/generate_gatk_intervals'
 include { BQSR_NORMAL } from './subworkflows/bqsr_normal'
 include { BQSR_TUMOR } from './subworkflows/bqsr_tumor'
@@ -22,7 +22,7 @@ include { VC_VARDICT_UNCOMPRESS_FOR_COMBINE } from './modules/vc_vardict_uncompr
 include { GENERATE_MANTA_CONFIG } from './modules/generate_manta_config'
 include { VC_STRELKA } from './subworkflows/vc_strelka'
 include { VC_STRELKA_COMPRESS } from './modules/vc_strelka_compress'
-//include { CIRCOS_PLOT } from './modules/circos_plot'
+include { CIRCOS_PLOT } from './modules/circos_plot'
 include { COMBINE_VARIANTS } from './modules/combine_variants'
 include { COMBINED_COMPRESS } from './modules/combined_compress'
 include { COMBINED_SORT } from './modules/combined_sort'
@@ -82,7 +82,6 @@ workflow {
         ch_snps_dbsnp
     )
 
-
     CALCULATE_PERFORMANCESUMMARY_GENOMEFILE(
         params.calculate_performancesummary_genomefile.code_file,
         ch_reference.map{ tuple -> [tuple[0], tuple[4]] }
@@ -105,7 +104,7 @@ workflow {
         ch_reference,
         ch_gridss_blacklist
     )
-/*
+
     VC_FACETS(
         ALIGNMENT_NORMAL.out.out_bam,
         ch_normal_name,
@@ -120,7 +119,7 @@ workflow {
         ch_pseudo_snps,
         ch_purity_cval
     )
-*/
+
     GENERATE_GATK_INTERVALS(
         params.generate_gatk_intervals.code_file,
         ch_reference.map{ tuple -> [tuple[0], tuple[4]] }
@@ -168,7 +167,6 @@ workflow {
         VC_GATK_SORT_COMBINED.out.out
     )
 
-/*
     GENERATE_VARDICT_HEADERLINES(
         params.generate_vardict_headerlines.code_file,
         ch_reference.map{ tuple -> [tuple[0], tuple[4]] }
@@ -198,7 +196,7 @@ workflow {
     VC_VARDICT_UNCOMPRESS_FOR_COMBINE(
         VC_VARDICT_SORT_COMBINED.out.out
     )
-*/
+
     GENERATE_MANTA_CONFIG(
         params.generate_manta_config.code_file
     )
@@ -215,7 +213,6 @@ workflow {
         VC_STRELKA.out.out
     )
 
-/*
     CIRCOS_PLOT(
         VC_FACETS.out.out_hisens_rds,
         assert V != null.map{ tuple -> tuple[0] },
@@ -223,7 +220,6 @@ workflow {
         ch_normal_name
     )
 
-*/
     COMBINE_VARIANTS(
         VC_GATK_UNCOMPRESSVCF.out.out.toList(),
         ch_normal_name

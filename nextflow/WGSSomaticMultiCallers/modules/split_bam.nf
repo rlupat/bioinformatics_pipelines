@@ -11,18 +11,18 @@ process SPLIT_BAM {
     path intervals, stageAs: 'intervals.bed'
 
     output:
-    tuple path("${"." + "/" + bam.name}"), path("*.bai"), emit: out
+    tuple path("${"out" + "/" + bam.name}"), path("${"out" + "/" + bai.name}"), emit: out
 
     script:
     def compression_level = null
     def intervals = intervals ? "--intervals ${intervals}" : ""
     def java_options = null
     """
-    mkdir -p '${"."}' \
+    mkdir -p 'out'; \
     gatk SplitReads \
     --java-options "-Xmx${4 * 3 / 4}G ${compression_level ? "-Dsamjdk.compress_level=" + compression_level : ""} ${[java_options, []].find{ it != null }.join(" ")}" \
     ${intervals} \
-    --output . \
+    --output 'out' \
     --input ${bam} \
     """
 

@@ -8,10 +8,10 @@ process MANTA {
     memory "${params.vc_strelka.manta.memory}"
 
     input:
-    tuple path(bam), path(bai)
+    tuple path(normal_bam), path(normal_bai)
     tuple path(fasta), path(fai)
     tuple path(bed_gz), path(tbi)
-    tuple path(bam), path(bai)
+    tuple path(tumour_bam), path(tumour_bai)
     path config, stageAs: 'config'
 
     output:
@@ -30,10 +30,10 @@ process MANTA {
     def call_regions = bed_gz ? "--callRegions ${bed_gz}" : ""
     def config = config ? "--config ${config}" : ""
     def exome = params.vc_strelka.is_exome == false ? "" : "--exome"
-    def tumor_bam = bam ? "--tumorBam ${bam}" : ""
+    def tumor_bam = tumour_bam ? "--tumorBam ${tumour_bam}" : ""
     """
     configManta.py \
-    --bam ${bam} \
+    --bam ${normal_bam} \
     ${call_regions} \
     ${config} \
     --referenceFasta ${fasta} \

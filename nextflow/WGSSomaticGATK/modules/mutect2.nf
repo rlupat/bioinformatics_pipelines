@@ -19,10 +19,9 @@ process MUTECT2 {
 
     input:
     tuple path(fasta), path(amb), path(ann), path(bwt), path(dict), path(fai), path(pac), path(sa)
-    path indexed_bam_array_flat
-    tuple path(vcf_gz), path(tbi)
-    path indexed_bam_array_flat
-    tuple path(vcf_gz), path(tbi)
+    path tumour_indexed_bam_array_flat
+    tuple path(gnomad_vcf_gz), path(gnomad_tbi)
+    path normal_indexed_bam_array_flat
     path intervals, stageAs: 'intervals.bed'
     val normal_sample
     val output_prefix
@@ -35,22 +34,21 @@ process MUTECT2 {
 
     script:
     def compression_level = null
-    def germline_resource = vcf_gz ? "--germline-resource ${vcf_gz}" : ""
-    def indexed_bam_array_flat = get_primary_files(indexed_bam_array_flat)
-    def normal_bams = indexed_bam_array_flat ? "-I " + indexed_bam_array_flat.join(' ') : ""
-    def indexed_bam_array_flat = get_primary_files(indexed_bam_array_flat)
-    def tumor_bams = indexed_bam_array_flat.collect{ "-I " + it }.join(' ')
+    def germline_resource = gnomad_vcf_gz ? "--germline-resource ${gnomad_vcf_gz}" : ""
+    def tumour_indexed_bam_array_flat = get_primary_files(tumour_indexed_bam_array_flat)
+    //def normal_bams = normal_indexed_bam_array_flat ? "-I " + normal_indexed_bam_array_flat.join(' ') : ""
+    def normal_indexed_bam_array_flat = get_primary_files(normal_indexed_bam_array_flat)
+    def normal_bams = normal_indexed_bam_array_flat.collect{ "-I " + it }.join(' ')
+    def tumor_bams = tumour_indexed_bam_array_flat.collect{ "-I " + it }.join(' ')
     def intervals = intervals ? "--intervals ${intervals}" : ""
     def java_options = null
     def normal_sample = normal_sample ? "--normal-sample ${normal_sample}" : ""
     def output_bam_name = params.vc_gatk.output_bam_name ? "-bamout ${params.vc_gatk.output_bam_name}" : ""
-    def panel_of_normals = vcf_gz ? "--panel-of-normals ${vcf_gz}" : ""
     """
     gatk Mutect2 \
     --java-options "-Xmx${16 * 3 / 4}G ${compression_level ? "-Dsamjdk.compress_level=" + compression_level : ""} ${[java_options, []].find{ it != null }.join(" ")}" \
     ${germline_resource} \
     ${intervals} \
-    ${panel_of_normals} \
     --reference ${fasta} \
     ${tumor_bams} \
     ${normal_bams} \

@@ -4,7 +4,7 @@ include { TUMOR } from './tumor'
 include { NORMAL } from './normal'
 include { ADDBAMSTATS } from '../modules/addbamstats'
 
-workflow ADDBAMSTATS {
+workflow SUBWF_ADDBAMSTATS {
 
     take:
     ch_normal_bam

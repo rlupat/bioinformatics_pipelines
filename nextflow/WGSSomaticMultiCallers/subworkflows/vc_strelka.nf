@@ -36,7 +36,7 @@ workflow VC_STRELKA {
 
     CONCATVCF(
         STRELKA.out.snvs.flatten().toList(),
-        STRELKA.out.snvs.flatten().toList()
+        STRELKA.out.indels.flatten().toList()
     )
 
     SORTVCF(

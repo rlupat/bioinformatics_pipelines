@@ -11,15 +11,15 @@ process SPLIT_BAM {
     path intervals, stageAs: 'intervals.bed'
 
     output:
-    tuple path("${params.vc_gatk.split_bam_output_filename + "/" + bam.name}"), path("*.bai"), emit: out
+    tuple path("${params.vc_gatk.split_bam_output_filename + "/" + bam.name}"), path("${params.vc_gatk.split_bam_output_filename + "/" + bai.name}"), emit: out
 
     script:
     def compression_level = null
     def intervals = intervals ? "--intervals ${intervals}" : ""
     def java_options = null
-    def output_filename = params.vc_gatk.split_bam_output_filename ? params.vc_gatk.split_bam_output_filename : .
+    def output_filename = params.vc_gatk.split_bam_output_filename ? params.vc_gatk.split_bam_output_filename : "."
     """
-    mkdir -p '${params.vc_gatk.split_bam_output_filename}' \
+    mkdir -p '${params.vc_gatk.split_bam_output_filename}'; \
     gatk SplitReads \
     --java-options "-Xmx${4 * 3 / 4}G ${compression_level ? "-Dsamjdk.compress_level=" + compression_level : ""} ${[java_options, []].find{ it != null }.join(" ")}" \
     ${intervals} \
